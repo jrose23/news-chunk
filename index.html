@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+        <link rel="stylesheet" href="style.css" />
+        <title>NEWSCHUNK.</title>
+    </head>
+    <body>
+        <div id="top"></div>
+        <header class="container-fluid bg-white">
+            <div class="container">
+                <div class="navbar">
+                    <a href="#" class="brand"><span class="brand-lt">NEWS</span><span class="brand-hvy">CHUNK.</span></a>
+                    <a href="#" class="menu-btn"><i id="menuBtnIcon" class="las la-bars"></i></a>
+                </div>
+                <div class="nav-list hidden">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="#" class="nav-link"><i class="las la-newspaper"></i>General</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link"><i class="las la-briefcase"></i>Business</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link"><i class="las la-film"></i>Entertainment</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link"><i class="las la-heartbeat"></i>Health</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link"><i class="las la-flask"></i>Science</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link"><i class="las la-basketball-ball"></i>Sports</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link"><i class="las la-robot"></i>Technology</a>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link saved-bookmarks"><i class="las la-bookmark"></i>My Bookmarks</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- DATE BANNER -->
+            <section class="container-fluid bg-yellow">
+                <div class="container">
+                    <div class="date-banner">
+                        <h4>Current news chunks for:</h4>
+                        <h1 id="currentDate"></h1>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CATEGORY BAR -->
+            <section id="catBar" class="container-fluid bg-black sticky">
+                <div class="container flex flex-center flex-space-between">
+                    <div class="category-container flex flex-center">
+                        <i id="categoryTitleIcon" class="las la-newspaper"></i>
+                        <h4 class="category-title text-white">General</h4>
+                    </div>
+                    <a href="#top" class="top-btn hidden"><i class="las la-angle-up text-white"></i></a>
+                </div>
+            </section>
+
+            <!-- NEWS GRID -->
+            <section>
+                <div class="container">
+                    <div class="news-grid"></div>
+                </div>
+            </section>
+
+            <!-- NOTIFICATION BAR -->
+            <div class="notification">
+                <div id="message-container" class="container"></div>
+            </div>
+        </main>
+
+        <script type="module" src="app.js"></script>
+    </body>
+</html>

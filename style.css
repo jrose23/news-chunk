@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800;900&family=Roboto+Condensed&family=Roboto:wght@300;400&display=swap');
+
+:root {
+    --color-yellow: rgba(255, 197, 85, 1);
+    --color-yellow-accent: rgba(255, 186, 51, 1);
+    --color-black: rgba(51, 51, 51, 1);
+    --color-gray: rgba(102, 102, 102, 1);
+    --color-gray-lt: rgba(204, 204, 204, 1);
+    --color-white: rgba(255, 255, 255, 1);
+    --font-headers: 'Barlow', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+    --font-body-condensed: 'Roboto Condensed', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 16px;
+    font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-headers);
+    text-transform: uppercase;
+}
+
+h4,
+h5 {
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-black);
+}
+
+.container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.container-fluid {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    align-items: center;
+}
+
+.flex-space-between {
+    justify-content: space-between;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.text-white {
+    color: var(--color-white);
+}
+
+.bg-white {
+    background-color: var(--color-white);
+}
+
+.bg-gray-lt {
+    background-color: var(--color-gray-lt);
+}
+
+.bg-gray {
+    background-color: var(--color-gray);
+}
+
+.bg-black {
+    background-color: var(--color-black);
+}
+
+.bg-yellow {
+    background-image: linear-gradient(120deg, var(--color-yellow) 65%, var(--color-yellow-accent) 35%);
+}
+
+/* ---------- NAVIGATION ---------- */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-headers);
+    padding: 1.25em 0;
+}
+
+.navbar .brand {
+    font-size: 1.3125em;
+    letter-spacing: 0.05em;
+}
+
+.navbar .brand-lt {
+    font-weight: 400;
+}
+
+.navbar .brand-hvy {
+    font-weight: 900;
+}
+
+.menu-btn {
+    background-color: var(--color-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.menu-btn i {
+    color: #fff;
+    transition: color 0.2s ease;
+}
+
+.menu-btn:hover i {
+    color: var(--color-yellow);
+}
+
+.nav-list ul {
+    width: 100%;
+    margin-bottom: 35px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 4fr));
+}
+
+.nav-list li {
+    font-family: var(--font-headers);
+    color: var(--color-black);
+    font-weight: 600;
+    list-style: none;
+    text-transform: uppercase;
+    padding: 15px 0px 15px 10px;
+    border-bottom: 1px solid var(--color-gray-lt);
+    transition: background-color 0.2s ease;
+}
+
+.nav-list li i {
+    margin-right: 10px;
+    color: var(--color-black);
+    transition: color 0.2s ease;
+}
+
+.nav-list li:hover {
+    background-color: #f6f6f6;
+}
+.nav-list li:hover a {
+    color: var(--color-black);
+}
+
+.nav-list li:hover i {
+    color: var(--color-yellow-accent);
+}
+
+.hidden {
+    display: none;
+}
+
+/* ---------- DATE BANNER ---------- */
+.date-banner {
+    padding: 6.25em 0;
+    font-family: var(--font-headers);
+    color: var(--color-black);
+    text-transform: uppercase;
+}
+
+.date-banner h4 {
+    font-size: clamp(1em, 1.5vw, 1.25em);
+}
+
+#currentDate {
+    font-size: clamp(2em, 4vw, 4em);
+}
+
+/* ---------- CATEGORY BAR ---------- */
+.category-title {
+    padding: 15px 0;
+}
+
+.category-container i {
+    margin-right: 10px;
+    color: var(--color-yellow);
+    z-index: 2;
+}
+
+.category-title,
+.category-container i {
+    font-size: clamp(1em, 1.25vw, 1.25em);
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+}
+
+/* ---------- NEWS GRID / NEWS CHUNKS ---------- */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3em;
+    margin: 6.25em 0;
+}
+
+.news-chunk {
+    background-color: #fff;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+    justify-content: start;
+    align-items: stretch;
+    box-shadow: 0px 5px 10px 0px var(--color-gray-lt);
+}
+
+.news-chunk-img {
+    width: 100%;
+    aspect-ratio: 1 / 0.75;
+    min-height: 225px;
+    object-fit: cover;
+    border-bottom: 5px solid var(--color-yellow);
+}
+
+.news-chunk-content {
+    padding: 1.5em;
+    height: 100%;
+}
+
+.news-chunk-content h1 {
+    font-size: 1.125em;
+    margin-bottom: 10px;
+}
+
+.news-chunk-content p.small {
+    font-family: var(--font-body-condensed);
+    font-size: 0.875em;
+    color: var(--color-gray);
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--color-gray-lt);
+    margin-bottom: 15px;
+}
+
+.news-chunk-content p {
+    font-size: 0.875em;
+    color: var(--color-black);
+    line-height: 1.4;
+    overflow: hidden;
+}
+
+.news-chunk-footer {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    padding: 1em;
+}
+
+.read-now-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-yellow);
+    color: var(--color-black);
+    padding: 8px 10px;
+    border-radius: 2px;
+    font-size: 0.825em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease;
+}
+
+.read-now-btn i {
+    margin-right: 5px;
+}
+
+.read-now-btn:hover {
+    background-color: var(--color-white);
+}
+
+.read-now-btn:focus {
+    outline: 2px solid var(--color-white);
+    background-color: var(--color-yellow-accent);
+}
+
+.bookmark-btn,
+.remove-bookmark-btn {
+    border: none;
+    padding: 5px 7px;
+    font-size: 18px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.bookmark-btn,
+.remove-bookmark-btn i {
+    color: var(--color-white);
+    transition: color 0.2s ease;
+}
+
+.bookmark-btn:hover,
+.remove-bookmark-btn:hover i {
+    color: var(--color-yellow);
+}
+
+.bookmark-btn[selected] i {
+    color: var(--color-yellow);
+}
+
+/* ---------- NOTIFICATION BAR ---------- */
+.notification {
+    background-color: rgba(51, 51, 51, 0.9);
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateY(100%);
+    color: var(--color-white);
+    text-align: center;
+    font-family: var(--font-headers);
+    text-transform: uppercase;
+    transition: all 0.125s ease-in;
+    z-index: 2;
+}
+
+.show-notification {
+    opacity: 1;
+    transform: translateY(0%);
+}
+
+.hide-notification {
+    opacity: 0;
+    transform: translateY(100%);
+}
