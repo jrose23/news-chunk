@@ -323,6 +323,7 @@ a {
 
 .bookmark-btn[selected] i {
     color: var(--color-yellow);
+    pointer-events: none;
 }
 
 /* ---------- NOTIFICATION BAR ---------- */

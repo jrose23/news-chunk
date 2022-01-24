@@ -104,34 +104,39 @@ function bookmarkNewsArticle(e) {
 
             // Get bookmark title
             const title = e.target.parentElement.parentElement.parentElement.childNodes[3].firstElementChild.innerText;
-            console.log(title);
+            // console.log(title);
 
             // Get bookmark URL
             const url = e.target.parentElement.parentElement.childNodes[1].href;
-            console.log(url);
+            // console.log(url);
 
             // Get bookmark date
             const dateSaved = Utils.getCurrentDate();
-            console.log(dateSaved);
+            // console.log(dateSaved);
 
+            // Create bookmark object
             const bookmarkData = {
                 title,
                 url,
                 dateSaved,
             };
 
+            // Save bookmark to local storage
             Utils.saveToLocalStorage(bookmarkData);
 
             // Display saved notification
             UI.displayNotification('Bookmark Saved');
-        } else {
-            // Remove 'selected' attribute
-            e.target.parentElement.removeAttribute('selected');
-            // Display removed notification
-            UI.displayNotification('Bookmark Removed');
-
-            // Delete Bookmark...
         }
+    } else if (e.target.parentElement.classList.contains('remove-bookmark-btn')) {
+        const title = e.target.parentElement.parentElement.previousElementSibling.childNodes[3].innerText;
+
+        e.target.parentElement.parentElement.parentElement.remove();
+
+        // Remove bookmark from local storage
+        Utils.removeFromLocalStorage(title);
+
+        // Display removed notification
+        UI.displayNotification('Bookmark Deleted');
     }
 }
 
@@ -141,35 +146,36 @@ function displayBookmarks() {
 
     if (localStorage.getItem('savedBookmarks') === null) {
         savedBookmarks = [];
-
-        const emptyMessage = document.createElement('h1');
-        emptyMessage.innerText = 'No bookmarks yet...';
-
-        newsGrid.appendChild(emptyMessage);
     } else {
         savedBookmarks = JSON.parse(localStorage.getItem('savedBookmarks'));
+
+        if (savedBookmarks.length === 0) {
+            const emptyMessage = document.createElement('h2');
+            emptyMessage.innerText = 'No bookmarks found.';
+            newsGrid.appendChild(emptyMessage);
+        }
+
+        savedBookmarks.reverse(); // Change array to descending order
+
+        savedBookmarks.forEach((bookmark) => {
+            const title = bookmark.title;
+            const url = bookmark.url;
+            const date = bookmark.dateSaved;
+
+            const bookmarkCard = document.createElement('article');
+            bookmarkCard.className = 'news-chunk flex flex-col';
+            bookmarkCard.innerHTML = `
+                <div class="news-chunk-content">    
+                    <p class="small">${date}</p>
+                    <h1><a href="${url}" target="_blank">${title}</a></h1>
+                </div>
+                <div class="news-chunk-footer flex flex-center flex-space-between">
+                    <a href="${url}" class="read-now-btn" target="_blank"><i class="las la-external-link-square-alt"></i>Read Now</a>
+                    <button class="remove-bookmark-btn"><i class="las la-trash-alt"></i></button>
+                </div>
+            `;
+
+            newsGrid.appendChild(bookmarkCard);
+        });
     }
-
-    savedBookmarks.reverse(); // Change array to descending order
-
-    savedBookmarks.forEach((bookmark) => {
-        const title = bookmark.title;
-        const url = bookmark.url;
-        const date = bookmark.dateSaved;
-
-        const bookmarkCard = document.createElement('article');
-        bookmarkCard.className = 'news-chunk flex flex-col';
-        bookmarkCard.innerHTML = `
-            <div class="news-chunk-content">    
-                <p class="small">${date}</p>
-                <h1><a href="${url}" target="_blank">${title}</a></h1>
-            </div>
-            <div class="news-chunk-footer flex flex-center flex-space-between">
-                <a href="${url}" class="read-now-btn" target="_blank"><i class="las la-external-link-square-alt"></i>Read Now</a>
-                <button class="remove-bookmark-btn"><i class="las la-trash-alt"></i></button>
-            </div>
-        `;
-
-        newsGrid.appendChild(bookmarkCard);
-    });
 }
