@@ -236,10 +236,11 @@ a {
 
 .news-chunk-img {
     width: 100%;
-    aspect-ratio: 1 / 0.75;
+    aspect-ratio: 1 / 0.675;
     min-height: 225px;
     object-fit: cover;
     border-bottom: 5px solid var(--color-yellow);
+    background-color: var(--color-black);
 }
 
 .news-chunk-content {
@@ -323,7 +324,6 @@ a {
 
 .bookmark-btn[selected] i {
     color: var(--color-yellow);
-    pointer-events: none;
 }
 
 /* ---------- NOTIFICATION BAR ---------- */

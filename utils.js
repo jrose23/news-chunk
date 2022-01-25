@@ -42,4 +42,21 @@ function removeFromLocalStorage(title) {
     }
 }
 
-export { getCurrentDate, saveToLocalStorage, removeFromLocalStorage };
+function checkSelectedBookmarks(data) {
+    const newsGrid = document.querySelector('.news-grid');
+    let savedBookmarks;
+
+    if (localStorage.getItem('savedBookmarks') === null) {
+        savedBookmarks = [];
+    } else {
+        savedBookmarks = JSON.parse(localStorage.getItem('savedBookmarks'));
+
+        for (let i = 0; i < savedBookmarks.length; i++) {
+            if (savedBookmarks[i].title.value === data.articles[i].title.value) {
+                newsGrid.childNodes[i].children[2].children[1].setAttribute('selected', '')
+            }
+        }
+    }
+}
+
+export { getCurrentDate, saveToLocalStorage, removeFromLocalStorage, checkSelectedBookmarks };

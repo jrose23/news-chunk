@@ -60,6 +60,8 @@ async function getNewsArticles(category) {
     data.articles.forEach((article) => {
         displayNewsArticles(article.urlToImage, article.title, article.author, article.source.name, article.description, article.url);
     });
+
+    Utils.checkSelectedBookmarks(data);
 }
 
 // DISPLAY NEWS ARTICLE CARDS
@@ -95,7 +97,6 @@ function displayNewsArticles(img, title, author, source, desc, url) {
     newsGrid.appendChild(article);
 }
 
-// BOOKMARK NEWS ARTICLE
 function bookmarkNewsArticle(e) {
     if (e.target.parentElement.classList.contains('bookmark-btn')) {
         if (e.target.parentElement.hasAttribute('selected') === false) {
@@ -126,6 +127,18 @@ function bookmarkNewsArticle(e) {
 
             // Display saved notification
             UI.displayNotification('Bookmark Saved');
+            console.log('Bookmark Saved', title);
+        } else {
+            const title = e.target.parentElement.parentElement.parentElement.childNodes[3].firstElementChild.innerText;
+
+            // Remove bookmark from local storage
+            Utils.removeFromLocalStorage(title);
+
+            e.target.parentElement.removeAttribute('selected');
+
+            // Display removed notification
+            UI.displayNotification('Bookmark Deleted');
+            console.log('Bookmark Deleted', title);
         }
     } else if (e.target.parentElement.classList.contains('remove-bookmark-btn')) {
         const title = e.target.parentElement.parentElement.previousElementSibling.childNodes[3].innerText;
@@ -155,7 +168,8 @@ function displayBookmarks() {
             newsGrid.appendChild(emptyMessage);
         }
 
-        savedBookmarks.reverse(); // Change array to descending order
+        // Show most recent bookmarks first
+        savedBookmarks.reverse();
 
         savedBookmarks.forEach((bookmark) => {
             const title = bookmark.title;
