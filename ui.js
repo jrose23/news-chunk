@@ -1,23 +1,23 @@
 const navList = document.querySelector('.nav-list');
 const menuBtnIcon = document.querySelector('#menuBtnIcon');
 
-function toggleNav() {
+export function toggleNav() {
     navList.classList.toggle('hidden');
     menuBtnIcon.classList.toggle('la-times');
 }
 
-function closeNav() {
+export function closeNav() {
     navList.classList.add('hidden');
     menuBtnIcon.className = 'las la-bars';
 }
 
-function clearNewsGrid() {
+export function clearNewsGrid() {
     const newsGrid = document.querySelector('.news-grid');
     const newsArticles = Array.from(newsGrid.children);
     newsArticles.forEach((article) => article.remove());
 }
 
-function displayNotification(message) {
+export function displayNotification(message) {
     const notificationBar = document.querySelector('.notification');
     const messageContainer = document.querySelector('#message-container');
     const notificationMessage = document.createElement('p');
@@ -34,7 +34,7 @@ function displayNotification(message) {
     }, 1300);
 }
 
-function getCategoryName(target) {
+export function getCategoryName(target) {
     const catTitle = document.querySelector('.category-title');
     const catTitleIcon = document.querySelector('#categoryTitleIcon');
 
@@ -72,5 +72,3 @@ function getCategoryName(target) {
     // Return category name
     return target.text;
 }
-
-export { toggleNav, closeNav, displayNotification, clearNewsGrid, getCategoryName };

@@ -10,10 +10,12 @@ const newsGrid = document.querySelector('.news-grid');
     document.querySelector('#currentDate').innerText = Utils.getCurrentDate();
     // Get default Category
     getNewsArticles('general');
+    // Load event listeners
+    loadEventListeners();
 })();
 
 // LOAD EVENT LISTENERS
-(function loadEventListeners() {
+function loadEventListeners() {
     // Listen for menu button
     document.querySelector('.menu-btn').addEventListener('click', UI.toggleNav);
     // Listen for bookmark button
@@ -50,7 +52,7 @@ const newsGrid = document.querySelector('.news-grid');
             topBtn.classList.add('hidden');
         }
     });
-})();
+}
 
 // GET NEWS ARTICLES
 async function getNewsArticles(category) {
@@ -60,8 +62,6 @@ async function getNewsArticles(category) {
     data.articles.forEach((article) => {
         displayNewsArticles(article.urlToImage, article.title, article.author, article.source.name, article.description, article.url);
     });
-
-    Utils.checkSelectedBookmarks(data);
 }
 
 // DISPLAY NEWS ARTICLE CARDS
@@ -127,7 +127,6 @@ function bookmarkNewsArticle(e) {
 
             // Display saved notification
             UI.displayNotification('Bookmark Saved');
-            console.log('Bookmark Saved', title);
         } else {
             const title = e.target.parentElement.parentElement.parentElement.childNodes[3].firstElementChild.innerText;
 
@@ -137,8 +136,7 @@ function bookmarkNewsArticle(e) {
             e.target.parentElement.removeAttribute('selected');
 
             // Display removed notification
-            UI.displayNotification('Bookmark Deleted');
-            console.log('Bookmark Deleted', title);
+            UI.displayNotification('Bookmark Removed');
         }
     } else if (e.target.parentElement.classList.contains('remove-bookmark-btn')) {
         const title = e.target.parentElement.parentElement.previousElementSibling.childNodes[3].innerText;
@@ -149,7 +147,7 @@ function bookmarkNewsArticle(e) {
         Utils.removeFromLocalStorage(title);
 
         // Display removed notification
-        UI.displayNotification('Bookmark Deleted');
+        UI.displayNotification('Bookmark Removed');
     }
 }
 

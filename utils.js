@@ -1,9 +1,9 @@
 // GET THE CURRENT DATE
-function getCurrentDate() {
+export function getCurrentDate() {
     return new Date().toDateString();
 }
 
-function saveToLocalStorage(bookmarkData) {
+export function saveToLocalStorage(bookmarkData) {
     let savedBookmarks;
 
     if (localStorage.getItem('savedBookmarks') === null) {
@@ -17,7 +17,7 @@ function saveToLocalStorage(bookmarkData) {
     localStorage.setItem('savedBookmarks', JSON.stringify(savedBookmarks));
 }
 
-function removeFromLocalStorage(title) {
+export function removeFromLocalStorage(title) {
     const newsGrid = document.querySelector('.news-grid');
     let savedBookmarks;
 
@@ -41,22 +41,3 @@ function removeFromLocalStorage(title) {
         newsGrid.appendChild(emptyMessage);
     }
 }
-
-function checkSelectedBookmarks(data) {
-    const newsGrid = document.querySelector('.news-grid');
-    let savedBookmarks;
-
-    if (localStorage.getItem('savedBookmarks') === null) {
-        savedBookmarks = [];
-    } else {
-        savedBookmarks = JSON.parse(localStorage.getItem('savedBookmarks'));
-
-        for (let i = 0; i < savedBookmarks.length; i++) {
-            if (savedBookmarks[i].title.value === data.articles[i].title.value) {
-                newsGrid.childNodes[i].children[2].children[1].setAttribute('selected', '')
-            }
-        }
-    }
-}
-
-export { getCurrentDate, saveToLocalStorage, removeFromLocalStorage, checkSelectedBookmarks };
