@@ -1,4 +1,4 @@
-import { config } from './config.js';
+import TOKEN from './config.js';
 import * as Utils from './utils.js';
 import * as UI from './ui.js';
 
@@ -56,7 +56,7 @@ function loadEventListeners() {
 
 // GET NEWS ARTICLES
 async function getNewsArticles(category) {
-    const res = await fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${config}`);
+    const res = await fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${TOKEN}`);
     const data = await res.json();
 
     data.articles.forEach((article) => {
