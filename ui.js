@@ -66,7 +66,7 @@ export function getCategoryName(target) {
             break;
     }
 
-    // Add category title
+    // Add category name to DOM
     catTitle.innerText = `${target.text}`;
 
     // Return category name

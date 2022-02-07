@@ -155,14 +155,16 @@ function bookmarkNewsArticle(e) {
 function displayBookmarks() {
     let savedBookmarks;
 
+    const emptyMessage = document.createElement('h2');
+    emptyMessage.innerText = 'No bookmarks found.';
+
     if (localStorage.getItem('savedBookmarks') === null) {
+        newsGrid.appendChild(emptyMessage);
         savedBookmarks = [];
     } else {
         savedBookmarks = JSON.parse(localStorage.getItem('savedBookmarks'));
 
         if (savedBookmarks.length === 0) {
-            const emptyMessage = document.createElement('h2');
-            emptyMessage.innerText = 'No bookmarks found.';
             newsGrid.appendChild(emptyMessage);
         }
 
